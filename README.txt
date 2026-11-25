@@ -7,7 +7,8 @@ WHAT'S IN THIS FOLDER
   script.js      Makes the page interactive (filters, search, typing effect...).
   data.js        >>> ALL YOUR CV CONTENT. This is the file you change. <<<
   editor.html    A friendly form for editing data.js without touching code.
-  images/        photo.jpg (main photo) and avatar.jpg (small link preview picture).
+  images/        photo.jpg (waterfront photo), headshot.jpg (portrait),
+                 og-image.jpg (the preview card LinkedIn shows when the link is shared).
   files/         Nimesh_Shrestha_CV.pdf (the "Download CV" button).
 
 HOW TO ADD A SKILL / JOB / PROJECT

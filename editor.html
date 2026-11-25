@@ -61,7 +61,7 @@
 const LABELS = {
   name:"Full name", headline:"Headline", roles:"Rotating job titles (typing effect)", location:"Location", email:"Email",
   phone:"Phone", showPhone:"Show phone number on the website", github:"GitHub URL", linkedin:"LinkedIn URL",
-  cvFile:"CV PDF file path", photo:"Main photo path", avatar:"Small avatar path", availability:"Availability badge",
+  cvFile:"CV PDF file path", photo:"Main photo path", headshot:"Headshot photo path", glance:"At a glance (facts)", now:"Right now", status:"Status (e.g. Completed / In progress)", availability:"Availability badge",
   workRights:"Work rights line", about:"About me paragraphs", stats:"Number highlights", skills:"Skills",
   experience:"Work experience", projects:"Projects", education:"Education", certifications:"Certifications",
   strengths:"Key strengths", languages:"Languages", group:"Group name", items:"Skills in this group",
@@ -76,8 +76,8 @@ const original = JSON.parse(JSON.stringify(window.CV_DATA));
 let data = JSON.parse(localStorage.getItem("cvDraft") || "null") || JSON.parse(JSON.stringify(original));
 
 const SECTIONS = [
-  ["Basic info", ["name","headline","roles","location","email","phone","showPhone","github","linkedin","availability","workRights","cvFile","photo","avatar"]],
-  ["About me", ["about","stats"]],
+  ["Basic info", ["name","headline","roles","location","email","phone","showPhone","github","linkedin","availability","cvFile","photo","headshot"]],
+  ["About me", ["about","glance","now"]],
   ["Skills", ["skills"]],
   ["Work experience", ["experience"]],
   ["Projects", ["projects"]],

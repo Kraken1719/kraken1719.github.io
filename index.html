@@ -4,23 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nimesh Shrestha · Software Developer · Auckland</title>
-  <meta name="description" content="Nimesh Shrestha – Master of IT (Software Development) student in Auckland. Python, Django, JavaScript, Azure, AWS, Docker, CI/CD and cyber security.">
-  <meta property="og:title" content="Nimesh Shrestha · Software Developer · Auckland">
-  <meta property="og:description" content="Master of IT student · Python, Django, Azure, AWS, Docker, CI/CD, cyber security.">
-  <meta property="og:image" content="images/avatar.jpg">
+  <meta name="description" content="Nimesh Shrestha – Master of IT (Software Development) student in Auckland with a cyber security degree. Python, Django, JavaScript, Azure, AWS, Docker, CI/CD.">
+  <meta name="theme-color" content="#070d1a">
+  <!-- Link preview (LinkedIn, WhatsApp, etc.). After the site is live, replace og:image/og:url with the full https:// address. -->
   <meta property="og:type" content="profile">
-  <link rel="icon" href="images/avatar.jpg">
+  <meta property="og:title" content="Nimesh Shrestha · Software Developer · Auckland">
+  <meta property="og:description" content="Master of IT student · Python, Django, Azure, AWS, Docker, CI/CD · Cyber security graduate. Open to graduate roles & internships.">
+  <meta property="og:image" content="images/og-image.jpg">
+  <meta property="og:url" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070d1a'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' font-weight='700' text-anchor='middle' fill='%23f4b85a'%3ENS%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip" href="#about">Skip to content</a>
   <div class="progress" id="progress"></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
-    <a href="#top" class="brand"><span class="dot"></span><span id="navName">Nimesh</span></a>
-    <nav class="links" id="links">
+    <a href="#top" class="brand" aria-label="Back to top">
+      <img id="navHeadshot" alt=""><span id="navName">Nimesh</span>
+    </a>
+    <nav class="links" id="links" aria-label="Sections">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
@@ -29,97 +37,153 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-actions">
-      <button class="icon-btn" id="themeBtn" aria-label="Toggle light/dark theme" title="Toggle theme">◐</button>
-      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      <button class="kbd-btn" id="paletteBtn" aria-label="Open quick menu"><span>Quick menu</span><kbd>Ctrl K</kbd></button>
+      <button class="icon-btn" id="themeBtn" aria-label="Switch light or dark theme" title="Switch theme">
+        <svg viewBox="0 0 24 24" class="sun"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+        <svg viewBox="0 0 24 24" class="moon"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
   </header>
 
   <main id="top">
-    <!-- HERO -->
+    <!-- ================= HERO ================= -->
     <section class="hero">
       <div class="hero-text">
-        <p class="pill" id="availability"></p>
+        <p class="prompt"><span class="p-user">nimesh@auckland</span>:<span class="p-path">~</span>$ whoami</p>
         <h1 id="name"></h1>
-        <p class="typed"><span class="mono">&gt;</span> <span id="typed"></span><span class="caret">|</span></p>
+        <p class="typed">I'm a <span id="typed"></span><span class="caret" aria-hidden="true"></span></p>
         <p class="headline" id="headline"></p>
-        <p class="loc" id="location"></p>
         <div class="cta">
-          <a class="btn primary" id="cvBtn" download>Download CV</a>
-          <a class="btn" href="#contact">Get in touch</a>
+          <a class="btn primary" id="cvBtn" download>
+            <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download CV
+          </a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
         </div>
         <div class="socials" id="socials"></div>
       </div>
-      <div class="hero-photo">
-        <img id="photo" alt="Nimesh Shrestha on the Auckland waterfront at night">
-        <div class="photo-glow"></div>
+
+      <div class="hero-visual">
+        <figure class="hero-photo" id="heroPhoto">
+          <img id="photo" alt="Nimesh on the Auckland waterfront at night">
+          <figcaption>Auckland waterfront · NZ</figcaption>
+        </figure>
+        <div class="status-card">
+          <img id="statusHeadshot" alt="">
+          <div>
+            <p class="status-line"><span class="live"></span>Available</p>
+            <p id="availability"></p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section reveal">
-      <h2><span class="num">01</span> About me</h2>
+    <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section">
+      <header class="sec-head reveal"><span class="sec-num">01</span><h2>About <em>me</em></h2></header>
       <div class="about-grid">
-        <div id="aboutText" class="about-text"></div>
-        <div class="stats" id="stats"></div>
+        <figure class="portrait reveal"><img id="headshot" alt="Portrait of Nimesh Shrestha"></figure>
+        <div class="reveal">
+          <div id="aboutText" class="about-text"></div>
+          <dl class="glance" id="glance"></dl>
+        </div>
+      </div>
+      <div class="now reveal">
+        <p class="now-label"><span class="live"></span>Right now</p>
+        <div class="now-grid" id="now"></div>
       </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="section reveal">
-      <h2><span class="num">02</span> Skills</h2>
-      <div class="skill-tools">
-        <div class="chips" id="skillFilters"></div>
-        <input type="search" id="skillSearch" placeholder="Search skills…" aria-label="Search skills">
+    <!-- ================= SKILLS ================= -->
+    <section id="skills" class="section">
+      <header class="sec-head reveal"><span class="sec-num">02</span><h2>Skills &amp; <em>tools</em></h2></header>
+      <div class="skill-tools reveal">
+        <div class="chips" id="skillFilters" role="group" aria-label="Filter skills"></div>
+        <label class="search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+          <input type="search" id="skillSearch" placeholder="Search a skill, e.g. Docker" aria-label="Search skills">
+        </label>
       </div>
-      <div class="skill-grid" id="skillGrid"></div>
+      <div class="skill-rows reveal" id="skillRows"></div>
+      <p class="hint reveal">Tip: click any skill to see the projects where I used it.</p>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section reveal">
-      <h2><span class="num">03</span> Experience</h2>
-      <ol class="timeline" id="timeline"></ol>
+    <!-- ================= EXPERIENCE ================= -->
+    <section id="experience" class="section">
+      <header class="sec-head reveal"><span class="sec-num">03</span><h2>Work <em>experience</em></h2></header>
+      <div class="rows" id="experienceRows"></div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section reveal">
-      <h2><span class="num">04</span> Projects</h2>
-      <div class="chips" id="projectFilters"></div>
+    <!-- ================= PROJECTS ================= -->
+    <section id="projects" class="section">
+      <header class="sec-head reveal"><span class="sec-num">04</span><h2>Selected <em>projects</em></h2></header>
+      <div class="chips reveal" id="projectFilters" role="group" aria-label="Filter projects"></div>
       <div class="project-grid" id="projectGrid"></div>
     </section>
 
-    <!-- EDUCATION -->
-    <section id="education" class="section reveal">
-      <h2><span class="num">05</span> Education</h2>
-      <div class="edu" id="edu"></div>
+    <!-- ================= EDUCATION ================= -->
+    <section id="education" class="section">
+      <header class="sec-head reveal"><span class="sec-num">05</span><h2><em>Education</em></h2></header>
+      <div class="rows" id="educationRows"></div>
       <div id="certWrap" hidden>
-        <h3 class="sub">Certifications</h3>
-        <div class="edu" id="certs"></div>
+        <h3 class="sub reveal">Certifications</h3>
+        <div class="rows" id="certRows"></div>
       </div>
     </section>
 
-    <!-- STRENGTHS -->
-    <section id="strengths" class="section reveal">
-      <h2><span class="num">06</span> Strengths & languages</h2>
+    <!-- ================= STRENGTHS ================= -->
+    <section id="strengths" class="section">
+      <header class="sec-head reveal"><span class="sec-num">06</span><h2>How I <em>work</em></h2></header>
       <div class="strength-grid" id="strengthGrid"></div>
-      <div class="langs" id="langs"></div>
+      <div class="langs reveal"><span class="langs-label">Languages</span><div id="langs"></div></div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section contact reveal">
-      <h2><span class="num">07</span> Let's talk</h2>
-      <p class="contact-lead">I'm open to graduate roles, internships and part-time work. The fastest way to reach me is email.</p>
-      <div class="contact-row">
-        <a class="btn primary big" id="mailBtn">Email me</a>
-        <button class="btn big" id="copyBtn">Copy email</button>
+    <!-- ================= TERMINAL ================= -->
+    <section id="terminal" class="section">
+      <header class="sec-head reveal"><span class="sec-num">07</span><h2>Prefer the <em>terminal?</em></h2></header>
+      <p class="lead reveal">A nod to my cyber security background. Type <code>help</code> to explore my CV from the command line.</p>
+      <div class="term reveal" id="term">
+        <div class="term-bar"><span></span><span></span><span></span><p>nimesh@auckland: ~</p></div>
+        <div class="term-body" id="termBody" aria-live="polite"></div>
+        <form class="term-input" id="termForm" autocomplete="off">
+          <label for="termIn"><span class="p-user">guest@cv</span>:<span class="p-path">~</span>$</label>
+          <input id="termIn" spellcheck="false" aria-label="Terminal command">
+        </form>
       </div>
-      <p class="contact-meta" id="contactMeta"></p>
-      <p class="rights" id="rights"></p>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="section contact">
+      <p class="sec-num reveal">08 — Contact</p>
+      <h2 class="contact-title reveal">Let's work <em>together.</em></h2>
+      <p class="lead reveal">Open to graduate roles, internships and part-time work in Auckland. Email is the fastest way to reach me.</p>
+      <div class="mail-wrap reveal">
+        <a class="mail" id="mailLink"></a>
+        <button class="copy" id="copyBtn" aria-label="Copy email address">
+          <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Copy
+        </button>
+      </div>
+      <p class="contact-meta reveal" id="contactMeta"></p>
     </section>
   </main>
 
   <footer class="foot">
-    <span id="footName"></span> · <span id="year"></span>
+    <span>© <span id="year"></span> <span id="footName"></span></span>
+    <span>Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to jump anywhere</span>
   </footer>
+
+  <!-- Command palette -->
+  <div class="palette" id="palette" hidden>
+    <div class="palette-box" role="dialog" aria-modal="true" aria-label="Quick menu">
+      <input id="paletteIn" placeholder="Jump to a section or run an action…" aria-label="Search actions">
+      <ul id="paletteList" role="listbox"></ul>
+      <p class="palette-foot"><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>Enter</kbd> select · <kbd>Esc</kbd> close</p>
+    </div>
+  </div>
 
   <div class="toast" id="toast" role="status"></div>
 

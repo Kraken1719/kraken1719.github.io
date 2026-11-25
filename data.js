@@ -8,9 +8,9 @@
    ===================================================================== */
 window.CV_DATA = {
   "name": "Nimesh Shrestha",
-  "headline": "Master of IT student · Software Development",
-  "roles": ["Software Developer", "Cloud & DevOps Learner", "Cyber Security Graduate", "Automation Builder"],
-  "location": "Auckland CBD, New Zealand",
+  "headline": "Master of IT student building with Python, Django and the cloud — with a cyber security degree behind me.",
+  "roles": ["software developer", "cloud & DevOps learner", "cyber security graduate", "automation builder"],
+  "location": "Auckland, New Zealand",
   "email": "nimeshshrestha450@gmail.com",
   "phone": "+64 22 181 6557",
   "showPhone": false,
@@ -18,20 +18,27 @@ window.CV_DATA = {
   "linkedin": "https://www.linkedin.com/in/nimesh-shrestha-12b030221",
   "cvFile": "files/Nimesh_Shrestha_CV.pdf",
   "photo": "images/photo.jpg",
-  "avatar": "images/avatar.jpg",
-  "availability": "Open to graduate roles, internships & part-time work in Auckland",
-  "workRights": "Student visa with work rights (up to 25 hours/week during study)",
+  "headshot": "images/headshot.jpg",
+  "availability": "Open to graduate roles, internships & part-time work",
 
   "about": [
-    "I'm a Master of Information Technology student (Software Development major, graduating December 2027) at the Auckland Institute of Studies, with a Bachelor's (Honours) in Ethical Hacking and Cyber Security from Coventry University.",
-    "I work hands-on with Python, Django, JavaScript, HTML and CSS, and I'm building cloud and automation skills on Microsoft Azure. I like breaking problems down, using AI tools well, and automating repetitive work.",
+    "I'm studying a Master of Information Technology (Software Development) at the Auckland Institute of Studies, graduating December 2027. Before that I completed a Bachelor's (Honours) in Ethical Hacking and Cyber Security from Coventry University.",
+    "I work with Python, Django, JavaScript, HTML and CSS, and I'm building cloud and automation skills on Microsoft Azure. I like breaking problems into clear steps, using AI tools well, and automating anything repetitive.",
     "I'm looking for a graduate role, internship or part-time position in software development, cloud, IT support or cyber security in Auckland."
   ],
 
-  "stats": [
-    { "value": "2", "label": "Clouds deployed to (Azure & AWS)" },
-    { "value": "3", "label": "Languages spoken" },
-    { "value": "2027", "label": "Master of IT graduation" }
+  "glance": [
+    { "label": "Studying", "value": "Master of IT – Software Development (AIS), Dec 2027" },
+    { "label": "Background", "value": "BSc (Hons) Ethical Hacking & Cyber Security, Coventry University" },
+    { "label": "Based in", "value": "Auckland CBD, New Zealand" },
+    { "label": "Work rights", "value": "Student visa – up to 25 hours/week during study" },
+    { "label": "Looking for", "value": "Software dev · Cloud · IT support · Cyber security" }
+  ],
+
+  "now": [
+    { "title": "Studying", "text": "Master of IT at AIS — Cloud Applications Development, CI/CD and Research Methods." },
+    { "title": "Building", "text": "A Django + JavaScript app with Docker and GitHub Actions CI pipelines." },
+    { "title": "Running", "text": "Several educational YouTube channels, produced end to end with AI-assisted workflows." }
   ],
 
   "skills": [
@@ -67,6 +74,7 @@ window.CV_DATA = {
     {
       "title": "Multi-cloud web application",
       "context": "AIS · Cloud Applications Development",
+      "status": "Completed",
       "tags": ["Azure", "AWS", "SQL"],
       "points": [
         "Deployed a web application on Microsoft Azure and AWS, with SQL database scripts",
@@ -77,6 +85,7 @@ window.CV_DATA = {
     {
       "title": "CI/CD pipeline build",
       "context": "AIS · Continuous Integration & Continuous Deployment",
+      "status": "In progress",
       "tags": ["Django", "JavaScript", "Docker", "GitHub Actions"],
       "points": [
         "Building a Django and JavaScript application with Docker containers and automated CI pipelines (GitHub Actions)",
@@ -85,8 +94,9 @@ window.CV_DATA = {
       "link": ""
     },
     {
-      "title": "\"Secure Tap\" – research proposal",
-      "context": "AIS · Research Methods",
+      "title": "Secure Tap",
+      "context": "AIS · Research Methods — research proposal",
+      "status": "Proposal",
       "tags": ["Machine Learning", "Security", "Payments"],
       "points": [
         "Proposed a contactless payment platform that uses machine learning to detect fraud and secure transactions"
@@ -96,6 +106,7 @@ window.CV_DATA = {
     {
       "title": "Automated YouTube content pipeline",
       "context": "Personal",
+      "status": "Ongoing",
       "tags": ["AI", "Automation", "Content"],
       "points": [
         "Run several educational YouTube channels on my own, from scripting to final edit",
@@ -109,7 +120,7 @@ window.CV_DATA = {
     {
       "degree": "Master of Information Technology – Software Development",
       "school": "Auckland Institute of Studies (AIS), Auckland",
-      "dates": "Sep 2026 – Dec 2027 (expected)",
+      "dates": "Sep 2026 – Dec 2027",
       "details": "Relevant courses: Cloud Applications Development, Continuous Integration & Continuous Deployment, Research Methods"
     },
     {
