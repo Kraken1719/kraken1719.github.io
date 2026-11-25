@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nimesh Shrestha · Software Developer · Auckland</title>
+  <meta name="description" content="Nimesh Shrestha – Master of IT (Software Development) student in Auckland. Python, Django, JavaScript, Azure, AWS, Docker, CI/CD and cyber security.">
+  <meta property="og:title" content="Nimesh Shrestha · Software Developer · Auckland">
+  <meta property="og:description" content="Master of IT student · Python, Django, Azure, AWS, Docker, CI/CD, cyber security.">
+  <meta property="og:image" content="images/avatar.jpg">
+  <meta property="og:type" content="profile">
+  <link rel="icon" href="images/avatar.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="brand"><span class="dot"></span><span id="navName">Nimesh</span></a>
+    <nav class="links" id="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle light/dark theme" title="Toggle theme">◐</button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="pill" id="availability"></p>
+        <h1 id="name"></h1>
+        <p class="typed"><span class="mono">&gt;</span> <span id="typed"></span><span class="caret">|</span></p>
+        <p class="headline" id="headline"></p>
+        <p class="loc" id="location"></p>
+        <div class="cta">
+          <a class="btn primary" id="cvBtn" download>Download CV</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+        <div class="socials" id="socials"></div>
+      </div>
+      <div class="hero-photo">
+        <img id="photo" alt="Nimesh Shrestha on the Auckland waterfront at night">
+        <div class="photo-glow"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section reveal">
+      <h2><span class="num">01</span> About me</h2>
+      <div class="about-grid">
+        <div id="aboutText" class="about-text"></div>
+        <div class="stats" id="stats"></div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section reveal">
+      <h2><span class="num">02</span> Skills</h2>
+      <div class="skill-tools">
+        <div class="chips" id="skillFilters"></div>
+        <input type="search" id="skillSearch" placeholder="Search skills…" aria-label="Search skills">
+      </div>
+      <div class="skill-grid" id="skillGrid"></div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section reveal">
+      <h2><span class="num">03</span> Experience</h2>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section reveal">
+      <h2><span class="num">04</span> Projects</h2>
+      <div class="chips" id="projectFilters"></div>
+      <div class="project-grid" id="projectGrid"></div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section reveal">
+      <h2><span class="num">05</span> Education</h2>
+      <div class="edu" id="edu"></div>
+      <div id="certWrap" hidden>
+        <h3 class="sub">Certifications</h3>
+        <div class="edu" id="certs"></div>
+      </div>
+    </section>
+
+    <!-- STRENGTHS -->
+    <section id="strengths" class="section reveal">
+      <h2><span class="num">06</span> Strengths & languages</h2>
+      <div class="strength-grid" id="strengthGrid"></div>
+      <div class="langs" id="langs"></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact reveal">
+      <h2><span class="num">07</span> Let's talk</h2>
+      <p class="contact-lead">I'm open to graduate roles, internships and part-time work. The fastest way to reach me is email.</p>
+      <div class="contact-row">
+        <a class="btn primary big" id="mailBtn">Email me</a>
+        <button class="btn big" id="copyBtn">Copy email</button>
+      </div>
+      <p class="contact-meta" id="contactMeta"></p>
+      <p class="rights" id="rights"></p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span id="footName"></span> · <span id="year"></span>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

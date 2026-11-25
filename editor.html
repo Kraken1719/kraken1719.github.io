@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CV Editor</title>
+<style>
+  :root { --bg:#0a1222; --card:#121f39; --line:#22324f; --text:#e8edf6; --muted:#9aa8c2; --accent:#f4b85a; --blue:#6cc3ff; --red:#ff7b7b; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 Inter, system-ui, Segoe UI, sans-serif; }
+  header { position:sticky; top:0; z-index:5; display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    padding:14px 24px; background:#0a1222ee; border-bottom:1px solid var(--line); backdrop-filter:blur(8px); }
+  header h1 { font-size:18px; margin:0 auto 0 0; }
+  button { font:600 14px inherit; font-family:inherit; cursor:pointer; border-radius:10px; border:1px solid var(--line);
+    background:var(--card); color:var(--text); padding:8px 14px; }
+  button:hover { border-color:var(--blue); }
+  button.primary { background:var(--accent); color:#1a1205; border-color:var(--accent); }
+  button.small { padding:3px 9px; font-size:12px; border-radius:7px; }
+  button.del { color:var(--red); }
+  main { max-width:900px; margin:0 auto; padding:24px; }
+  .help { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 18px; color:var(--muted); margin-bottom:24px; }
+  .help b { color:var(--text); }
+  details.sec { background:var(--card); border:1px solid var(--line); border-radius:14px; margin-bottom:14px; }
+  details.sec > summary { padding:14px 18px; font-weight:600; cursor:pointer; font-size:16px; }
+  .sec-body { padding:0 18px 18px; }
+  label { display:block; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:12px 0 4px; }
+  input[type=text], textarea { width:100%; background:#0a1222; color:var(--text); border:1px solid var(--line);
+    border-radius:8px; padding:8px 10px; font:14px inherit; font-family:inherit; }
+  textarea { min-height:64px; resize:vertical; }
+  input[type=checkbox] { transform:scale(1.2); }
+  .item { border:1px solid var(--line); border-radius:10px; padding:10px 12px; margin:8px 0; background:#0d1830; }
+  .row { display:flex; gap:6px; align-items:flex-start; margin:6px 0; }
+  .row > :first-child { flex:1; }
+  .item-bar { display:flex; gap:6px; justify-content:flex-end; }
+  .add { margin-top:6px; color:var(--blue); }
+  #status { color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>✏️ CV Editor</h1>
+  <span id="status"></span>
+  <button onclick="preview()">Preview site</button>
+  <button onclick="resetDraft()">Discard changes</button>
+  <button class="primary" onclick="download()">Download data.js</button>
+</header>
+<main>
+  <div class="help">
+    <b>How to update your website:</b><br>
+    1. Change anything below (add skills, jobs, projects…). Your changes auto-save in this browser.<br>
+    2. Click <b>Preview site</b> to see how it looks.<br>
+    3. Click <b>Download data.js</b> and replace the old <b>data.js</b> in your “CV Website” folder with the downloaded one.<br>
+    4. Upload/push the folder again (see README.txt) so the live link updates.
+  </div>
+  <div id="form"></div>
+</main>
+
+<script src="data.js"></script>
+<script>
+const LABELS = {
+  name:"Full name", headline:"Headline", roles:"Rotating job titles (typing effect)", location:"Location", email:"Email",
+  phone:"Phone", showPhone:"Show phone number on the website", github:"GitHub URL", linkedin:"LinkedIn URL",
+  cvFile:"CV PDF file path", photo:"Main photo path", avatar:"Small avatar path", availability:"Availability badge",
+  workRights:"Work rights line", about:"About me paragraphs", stats:"Number highlights", skills:"Skills",
+  experience:"Work experience", projects:"Projects", education:"Education", certifications:"Certifications",
+  strengths:"Key strengths", languages:"Languages", group:"Group name", items:"Skills in this group",
+  role:"Job title", org:"Company", dates:"Dates", points:"Bullet points", title:"Title", context:"Context / where",
+  tags:"Tags", link:"Link (optional)", degree:"Qualification", school:"Institution", details:"Details",
+  value:"Number", label:"Label", text:"Description", level:"Level", issuer:"Issuer"
+};
+const TEMPLATES = {
+  certifications: { name:"", issuer:"", dates:"", details:"" },
+};
+const original = JSON.parse(JSON.stringify(window.CV_DATA));
+let data = JSON.parse(localStorage.getItem("cvDraft") || "null") || JSON.parse(JSON.stringify(original));
+
+const SECTIONS = [
+  ["Basic info", ["name","headline","roles","location","email","phone","showPhone","github","linkedin","availability","workRights","cvFile","photo","avatar"]],
+  ["About me", ["about","stats"]],
+  ["Skills", ["skills"]],
+  ["Work experience", ["experience"]],
+  ["Projects", ["projects"]],
+  ["Education & certifications", ["education","certifications"]],
+  ["Strengths & languages", ["strengths","languages"]],
+];
+
+function save() {
+  localStorage.setItem("cvDraft", JSON.stringify(data));
+  document.getElementById("status").textContent = "Saved in browser · " + new Date().toLocaleTimeString();
+}
+function blankLike(v) {
+  if (Array.isArray(v)) return [];
+  if (v && typeof v === "object") { const o = {}; for (const k in v) o[k] = blankLike(v[k]); return o; }
+  return typeof v === "boolean" ? false : "";
+}
+const isLong = (k, v) => ["about","details","text","points"].includes(k) || (typeof v === "string" && v.length > 70);
+
+function field(parent, key, label, root) {
+  const v = root[key];
+  const wrap = document.createElement("div");
+  const lab = document.createElement("label"); lab.textContent = LABELS[label] || label; wrap.appendChild(lab);
+
+  if (typeof v === "boolean") {
+    const c = document.createElement("input"); c.type = "checkbox"; c.checked = v;
+    c.onchange = () => { root[key] = c.checked; save(); };
+    wrap.appendChild(c);
+  } else if (Array.isArray(v)) {
+    const box = document.createElement("div");
+    const sample = v[0] ?? TEMPLATES[key] ?? "";
+    const isObj = typeof sample === "object";
+    v.forEach((item, i) => {
+      const el = document.createElement("div");
+      el.className = isObj ? "item" : "row";
+      const bar = document.createElement("div"); bar.className = isObj ? "item-bar" : "";
+      bar.style.display = "flex"; bar.style.gap = "4px";
+      const mk = (t, fn, cls) => { const b = document.createElement("button"); b.className = "small " + (cls||""); b.textContent = t; b.title = {"↑":"Move up","↓":"Move down","✕":"Remove"}[t]; b.onclick = fn; return b; };
+      bar.append(
+        mk("↑", () => { if (i > 0) { [v[i-1], v[i]] = [v[i], v[i-1]]; save(); render(); } }),
+        mk("↓", () => { if (i < v.length-1) { [v[i+1], v[i]] = [v[i], v[i+1]]; save(); render(); } }),
+        mk("✕", () => { if (confirmRemove()) { v.splice(i,1); save(); render(); } }, "del"));
+      if (isObj) { el.appendChild(bar); for (const k in item) field(el, k, k, item); }
+      else {
+        const inp = input(key, item, (val) => { v[i] = val; save(); });
+        el.append(inp, bar);
+      }
+      box.appendChild(el);
+    });
+    const add = document.createElement("button"); add.className = "small add";
+    add.textContent = "+ Add " + (isObj ? "entry" : "item");
+    add.onclick = () => { v.push(isObj ? blankLike(sample) : ""); save(); render(); };
+    box.appendChild(add);
+    wrap.appendChild(box);
+  } else {
+    wrap.appendChild(input(key, v, (val) => { root[key] = val; save(); }));
+  }
+  parent.appendChild(wrap);
+}
+function input(key, value, onChange) {
+  const el = isLong(key, value) ? document.createElement("textarea") : Object.assign(document.createElement("input"), { type:"text" });
+  el.value = value ?? ""; el.oninput = () => onChange(el.value);
+  return el;
+}
+function confirmRemove() { return true; } // removal can be undone with "Discard changes"
+
+function render() {
+  const open = [...document.querySelectorAll("details.sec")].map(d => d.open);
+  const form = document.getElementById("form"); form.innerHTML = "";
+  SECTIONS.forEach(([title, keys], idx) => {
+    const d = document.createElement("details"); d.className = "sec"; d.open = open.length ? open[idx] : idx === 2;
+    d.innerHTML = `<summary>${title}</summary>`;
+    const body = document.createElement("div"); body.className = "sec-body";
+    keys.forEach(k => { if (k in data) field(body, k, k, data); });
+    d.appendChild(body); form.appendChild(d);
+  });
+}
+function preview() { save(); window.open("index.html?preview", "_blank"); }
+function resetDraft() {
+  if (!window.confirmReset) { window.confirmReset = true; document.getElementById("status").textContent = "Click “Discard changes” again to confirm"; setTimeout(() => window.confirmReset = false, 3000); return; }
+  localStorage.removeItem("cvDraft"); data = JSON.parse(JSON.stringify(original)); render();
+  document.getElementById("status").textContent = "Reset to the current data.js";
+}
+function download() {
+  const header = "/* =====================================================================\n   YOUR CV CONTENT LIVES HERE.\n   Edit this file (or use editor.html) to change anything on the site.\n   Newest items go FIRST in each list.\n   ===================================================================== */\n";
+  const blob = new Blob([header + "window.CV_DATA = " + JSON.stringify(data, null, 2) + ";\n"], { type:"text/javascript" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "data.js"; a.click();
+}
+render();
+</script>
+</body>
+</html>
