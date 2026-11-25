@@ -101,9 +101,9 @@
 
   function setProjectFilter(fn, chipLabel) {
     projectEls.forEach((el, i) => {
-      const match = fn(i, el);
-      el.classList.toggle("dim", fn !== null && !match);
-      el.classList.toggle("glow", fn !== null && match && chipLabel !== undefined);
+      const match = fn ? fn(i, el) : true;
+      el.classList.toggle("dim", !!fn && !match);
+      el.classList.toggle("glow", !!fn && match);
     });
   }
   function renderProjectChips(active, extra) {
